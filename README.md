@@ -16,4 +16,7 @@ Grafana manifests: https://github.com/bibinwilson/kubernetes-grafana
 
 Node Exporter manifests: https://github.com/bibinwilson/kubernetes-node-exporter
 
+# Source
+
+Fork from https://github.com/bibinwilson/kubernetes-prometheus
 
