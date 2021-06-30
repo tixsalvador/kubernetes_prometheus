@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus-deployment
-  namespace: monitoring
+  namespace: prometheus
   labels:
     app: prometheus-server
 spec:
@@ -33,6 +33,7 @@ spec:
           configMap:
             defaultMode: 420
             name: prometheus-server-conf
-  
+
         - name: prometheus-storage-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: prometheus-pvc
