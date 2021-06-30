@@ -38,6 +38,12 @@ You need to add the following job configuration to your prometheus config for pr
   static_configs:
     - targets: ['kube-state-metrics.kube-system.svc.cluster.local:8080']
 ```
+
+### Expose Prometheus as a Service [NodePort]
+```sh
+$ kubectl create -f prometheus-service.yaml
+```
+
 ****************************************************************************************
 ### kubernetes prometheus Setup
 
