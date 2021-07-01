@@ -16,7 +16,7 @@ $ kubectl create -f prometheus-config-map.yaml
 ```
 Check https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/ for info on config map   
 
-### Create Persistent Volume claimName
+### Create Persistent Volume claim
 ```sh
 $ kubectl create -f prometheus-pvc-nfs.yaml
 ```
@@ -43,6 +43,39 @@ You need to add the following job configuration to your prometheus config for pr
 ```sh
 $ kubectl create -f prometheus-service.yaml
 ```
+
+### Install Kubernetes grafana
+```sh
+$ git clone https://github.com/bibinwilson/kubernetes-grafana.git
+
+# Edit grafana-datasource-config.yaml
+Change:
+namespace: default
+To:
+namespace: prometheus
+```
+Note: The following data source configuration is for Prometheus. If you have more data sources, you can add more data sources with different YAMLs under the data section.  
+
+```sh
+$ kubectl create -f grafana-datasource-config.yaml
+```
+
+### Create grafana persistent volume claim
+```sh
+$ kubectl create -f kubernetes-grafana/grafana-pvc-nfs.yaml
+```
+### Build grafana deployment
+```sh
+$ kubectl create -f kubernetes-grafana/deployment.yaml
+```
+
+### Expose Grafana as a Service [NodePort]
+```sh
+$ kubectl create -f kubernetes-grafana/service.yaml
+```
+
+
+
 
 ****************************************************************************************
 ### kubernetes prometheus Setup
